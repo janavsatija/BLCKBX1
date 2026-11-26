@@ -17,6 +17,19 @@ I'm a Bachelor of IT (Cybersecurity) student at Macquarie University, building t
 
 ---
 
+## Explore the portfolio
+
+I started this project during my third year of university after realising how important practical experience is. Rather than wishing I had started earlier, I decided to start now.
+
+| Documentation | Focus |
+|---|---|
+| [Learning journey](JOURNEY.md) | Progress and lessons learned |
+| [UGREEN driver troubleshooting](docs/ugreen-driver.md) | Linux, firmware and DKMS |
+| [Network security](docs/network-security.md) | Architecture and access controls |
+| [Project BYTE](projects/BYTE/README.md) | Custom software development |
+| [Vulnerability remediation](security/tcp-timestamps.md) | Blue-team case study |
+| [Roadmap](ROADMAP.md) | Upcoming builds and purple-team goals |
+
 ## TL;DR
 
 - Headless Ubuntu server running **8+ services** in Docker, reachable only over a **Tailscale VPN** (nothing exposed to the internet).
