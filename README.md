@@ -1,4 +1,6 @@
-# Homelab :sparkles:
+# HOMELAB
+
+### My journey into cybersecurity
 
 ![Ubuntu](https://img.shields.io/badge/Ubuntu_Server-E95420?style=flat-square&logo=ubuntu&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
@@ -18,9 +20,9 @@ I'm a Bachelor of IT (Cybersecurity) student at Macquarie University, building t
 ## TL;DR
 
 - Headless Ubuntu server running **8+ services** in Docker, reachable only over a **Tailscale VPN** (nothing exposed to the internet).
-- Admin dashboards locked to localhost and reached via **SSH tunnels**; key-based SSH; no default passwords.
-- Ran a **vulnerability scan on my own server** with Greenbone, found a finding, fixed it, and verified the fix on rescan.
-- Every build is documented here with what I did, why, and what I learned.
+- Admin dashboards locked to localhost and reached via **SSH tunnels**; key-based SSH; random database passwords and changed Greenbone default credentials.
+- Ran a **vulnerability scan on my own server** with Greenbone, found a finding, fixed it, and verified the kernel configuration change. A follow-up scan is planned.
+- This repository is a growing record of what I build, what breaks, how I troubleshoot it and what I learn.
 
 ---
 
@@ -33,8 +35,11 @@ I'm a Bachelor of IT (Cybersecurity) student at Macquarie University, building t
 | RAM | 8 GB DDR4 |
 | Boot drive | 256 GB NVMe SSD |
 | Storage | 2 TB Seagate One Touch (USB, ext4) |
-| Network | USB Wi-Fi adapter + USB Bluetooth adapter |
+| Network | UGREEN AX900 USB Wi-Fi 6 + USB Bluetooth adapter |
 | OS | Ubuntu Server 26.04 LTS (headless) |
+
+### Dashboard device
+Amazon Fire HD 6 (2014), repurposed for BYTE.
 
 ### D-Link DIR-X3000Z (AX3000 Wi-Fi 6)
 A standalone, isolated network with no internet uplink. Used for security testing and for hosting a Wi-Fi CTF challenge.
@@ -56,9 +61,14 @@ flowchart LR
         Docker --> Immich
         Docker --> Greenbone
         Docker --> Actual[Actual Budget]
+        Docker --> BYTE[BYTE - custom dashboard]
         Samba[Samba share]
     end
     Lab --> HDD[(2 TB storage)]
+    Tablet[Fire HD 6] --- BYTE
+    subgraph Isolated[Standalone D-Link lab - no internet uplink]
+        Targets[CTFs and planned vulnerable targets]
+    end
 ```
 
 ---
@@ -80,16 +90,38 @@ flowchart LR
 
 ---
 
+| BYTE | My custom music player and server monitoring dashboard |
+
 ## Security choices
 
 - **No ports open to the internet.** Remote access only through Tailscale.
 - **Admin dashboards locked to localhost.** Portainer, Uptime Kuma, Greenbone, Actual and the Pi-hole admin page only listen on the server itself; I reach them through SSH tunnels.
 - **Least-privilege file sharing.** The Samba share allows one named user, no guests.
-- **No default passwords.** Database passwords are randomly generated; changed Greenbone's default admin login.
+- **Credential hardening.** Database passwords are randomly generated; changed Greenbone's default admin login.
 - **Secrets stay out of Git.** `.env` files are excluded with `.gitignore`.
 - **Key-based SSH** from my Mac.
 
 ---
+
+## Journey — November 2026 onwards
+
+### 01. Linux foundations and UGREEN driver troubleshooting
+Installed headless Ubuntu Server and configured remote administration from my Mac. Getting the UGREEN AX900 working required identifying the AIC8800D80 chipset, troubleshooting USB mode switching, firmware, kernel modules and DKMS, and configuring Netplan. Wireless connectivity and SSH access now work.
+
+**Learned:** Linux hardware compatibility, kernel logs, driver dependencies and systematic troubleshooting.
+
+### 02. Networking and container infrastructure
+Explored static addressing, subnetting, DHCP, DNS, NAT, Linux forwarding, iptables and UFW while experimenting with the D-Link router. Investigated Tailscale DNS issues and deployed Docker, Pi-hole, Portainer and Uptime Kuma. The D-Link now operates as a separate standalone lab without an internet uplink.
+
+**Learned:** network boundaries, secure remote access, service dependencies and the importance of verifying changes.
+
+### 03. BYTE — my own software project
+BYTE is a music player and server monitoring dashboard I built, with Spotify integration and a minimalist interface on a repurposed Fire HD 6 tablet. It combines a self-hosted backend, API integration, Android/ADB experimentation and interface design. BYTE is an ongoing project, not a third-party application.
+
+**Learned:** application development, deployment, API integration and debugging.
+
+### 04. Personal cloud and vulnerability management
+Expanded storage, deployed personal services and began assessing the security of my own infrastructure. The builds below document this stage.
 
 ## Builds
 
@@ -124,6 +156,27 @@ Self-hosted budgeting app in Docker, locked to localhost and reached over an SSH
 
 ---
 
+## Troubleshooting journal
+
+| Problem | Resolution / lesson |
+|---|---|
+| UGREEN Wi-Fi adapter not working | Investigated chipset, USB mode switching, firmware and DKMS; restored connectivity |
+| Tailscale DNS issues | Investigated resolver configuration and VPN DNS behaviour |
+| Docker permission denied | Configured Docker group membership; learned it is effectively root-equivalent |
+| iOS Samba share read-only | Configured Apple-compatible `vfs_fruit` |
+| Empty Immich database password | Used `/dev/urandom` to generate credentials when OpenSSL was unavailable |
+| Localhost-only dashboards inaccessible remotely | Used SSH tunnels rather than exposing administrative ports |
+| Limited RAM | Disabled Immich machine learning |
+| Git push blocked by email privacy | Configured GitHub no-reply email and PAT authentication |
+
+## Screenshots
+
+### Portainer dashboard
+![Portainer dashboard](./portainer.png)
+
+### Running containers
+![Running containers](./containers.png)
+
 ## Roadmap
 
 - [x] Ubuntu Server, Tailscale, Docker
@@ -132,14 +185,27 @@ Self-hosted budgeting app in Docker, locked to localhost and reached over an SSH
 - [x] Immich
 - [x] Greenbone vulnerability scan + first fix
 - [x] Actual Budget
+- [x] UGREEN Wi-Fi driver troubleshooting
+- [x] BYTE custom dashboard
+- [x] Standalone isolated lab network
+- [ ] Document detailed technical case studies, including failed approaches and verification evidence
+- [ ] Confirm persistent TCP timestamp remediation and follow-up scan
 - [ ] Automated backups (restic, 3-2-1 rule)
 - [ ] Harden SSH: key-only, disable password login, MFA
 - [ ] Wazuh SIEM: collect logs and alert on attacks
-- [ ] Isolated lab network with vulnerable targets (Juice Shop, DVWA)
+- [ ] Deploy vulnerable targets (Juice Shop, DVWA) and verify isolation
 - [ ] Red + blue project: attack a target, detect it in Wazuh, document it
 - [ ] RAM upgrade to run heavier services
 
 ---
+
+## Career direction
+
+My goal is to develop both offensive and defensive security skills, eventually combining them in purple-team exercises: simulate an authorised attack, collect telemetry, investigate, mitigate and retest. This repository will grow alongside my degree and document my progress towards a cybersecurity role.
+
+All security testing is limited to systems I own or have explicit permission to assess. Sensitive configuration and credentials must remain outside the public repository.
+
+**Build. Break. Understand. Defend.**
 
 ## Acknowledgements
 - [awesome-selfhosted](https://awesome-selfhosted.net/)
