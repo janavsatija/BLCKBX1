@@ -63,7 +63,7 @@ I started this project during my third year of university after realising how im
 Amazon Fire HD 6 (2014), repurposed for BYTE.
 
 ### D-Link DIR-X3000Z (AX3000 Wi-Fi 6)
-Last documented as a standalone lab without an internet uplink. Isolation must be verified before security testing.
+Working dedicated lab router with an internet uplink connected when required. Wi-Fi name: `optiplexlab 5ghz`. Isolation must be verified before security testing.
 
 ---
 
@@ -87,7 +87,7 @@ flowchart LR
     end
     Lab --> HDD[(2 TB storage)]
     Tablet[Fire HD 6] --- BYTE
-    subgraph Isolated[Standalone D-Link lab - no internet uplink]
+    subgraph Isolated[D-Link lab - optional internet uplink]
         Targets[CTFs and planned vulnerable targets]
     end
 ```
@@ -131,7 +131,7 @@ Installed headless Ubuntu Server and configured remote administration from my Ma
 **Topics explored:** Linux hardware compatibility, kernel logs, driver dependencies and systematic troubleshooting.
 
 ### 02. Networking and container infrastructure
-Explored static addressing, subnetting, DHCP, DNS, NAT, Linux forwarding, iptables and UFW while experimenting with the D-Link router. Investigated Tailscale DNS issues and deployed Docker, Pi-hole, Portainer and Uptime Kuma. The D-Link was last documented as a standalone lab; isolation remains to be verified.
+Explored static addressing, subnetting, DHCP, DNS, NAT, Linux forwarding, iptables and UFW while experimenting with the D-Link router. Investigated Tailscale DNS issues and deployed Docker, Pi-hole, Portainer and Uptime Kuma. The D-Link is operational with internet connectivity when required; isolation remains to be verified.
 
 **Topics explored:** network boundaries, secure remote access, service dependencies and the importance of verifying changes.
 
