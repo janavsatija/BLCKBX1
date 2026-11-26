@@ -1,6 +1,10 @@
-# HOMELAB
+# BLCKBX1
 
-### My journey into cybersecurity
+### OPTIPLEXLAB — a personal infrastructure and cybersecurity laboratory
+
+> Build. Break. Understand. Repeat.
+
+BLCKBX1 is the public portfolio of OPTIPLEXLAB. OPTIPLEXLAB ACADEMY is my learning programme. The repository rename is pending.
 
 ![Ubuntu](https://img.shields.io/badge/Ubuntu_Server-E95420?style=flat-square&logo=ubuntu&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
@@ -29,10 +33,14 @@ I started this project during my third year of university after realising how im
 | [Project BYTE](projects/BYTE/README.md) | Custom software development |
 | [Vulnerability remediation](security/tcp-timestamps.md) | Blue-team case study |
 | [Roadmap](ROADMAP.md) | Upcoming builds and purple-team goals |
+| [Academy](ACADEMY.md) | Learning and independent skill development |
+| [References](REFERENCES.md) | Infrastructure inspiration |
+| [Architecture](architecture/README.md) | Network and rack documentation |
+| [Evidence](assets/README.md) | Screenshot and publication checklist |
 
 ## TL;DR
 
-- Headless Ubuntu server running **8+ services** in Docker, reachable only over a **Tailscale VPN** (nothing exposed to the internet).
+- Headless Ubuntu server with self-hosted services and Tailscale remote access. Public exposure and current service bindings are pending a fresh audit.
 - Admin dashboards locked to localhost and reached via **SSH tunnels**; key-based SSH; random database passwords and changed Greenbone default credentials.
 - Ran a **vulnerability scan on my own server** with Greenbone, found a finding, fixed it, and verified the kernel configuration change. A follow-up scan is planned.
 - This repository is a growing record of what I build, what breaks, how I troubleshoot it and what I learn.
@@ -55,7 +63,7 @@ I started this project during my third year of university after realising how im
 Amazon Fire HD 6 (2014), repurposed for BYTE.
 
 ### D-Link DIR-X3000Z (AX3000 Wi-Fi 6)
-A standalone, isolated network with no internet uplink. Used for security testing and for hosting a Wi-Fi CTF challenge.
+Last documented as a standalone lab without an internet uplink. Isolation must be verified before security testing.
 
 ---
 
@@ -74,7 +82,7 @@ flowchart LR
         Docker --> Immich
         Docker --> Greenbone
         Docker --> Actual[Actual Budget]
-        Docker --> BYTE[BYTE - custom dashboard]
+        BYTE[BYTE - custom dashboard]
         Samba[Samba share]
     end
     Lab --> HDD[(2 TB storage)]
@@ -101,11 +109,11 @@ flowchart LR
 | ![Samba](https://img.shields.io/badge/Samba-SMB_share-555555?style=for-the-badge) | Network file share |
 | ![Greenbone](https://img.shields.io/badge/Greenbone-OpenVAS-66C430?style=for-the-badge) | Vulnerability scanning |
 
----
-
 | BYTE | My custom music player and server monitoring dashboard |
 
-## Security choices
+## Previously configured security choices
+
+These describe prior configuration, not a current independent security audit.
 
 - **No ports open to the internet.** Remote access only through Tailscale.
 - **Admin dashboards locked to localhost.** Portainer, Uptime Kuma, Greenbone, Actual and the Pi-hole admin page only listen on the server itself; I reach them through SSH tunnels.
@@ -121,17 +129,17 @@ flowchart LR
 ### 01. Linux foundations and UGREEN driver troubleshooting
 Installed headless Ubuntu Server and configured remote administration from my Mac. Getting the UGREEN AX900 working required identifying the AIC8800D80 chipset, troubleshooting USB mode switching, firmware, kernel modules and DKMS, and configuring Netplan. Wireless connectivity and SSH access now work.
 
-**Learned:** Linux hardware compatibility, kernel logs, driver dependencies and systematic troubleshooting.
+**Topics explored:** Linux hardware compatibility, kernel logs, driver dependencies and systematic troubleshooting.
 
 ### 02. Networking and container infrastructure
 Explored static addressing, subnetting, DHCP, DNS, NAT, Linux forwarding, iptables and UFW while experimenting with the D-Link router. Investigated Tailscale DNS issues and deployed Docker, Pi-hole, Portainer and Uptime Kuma. The D-Link now operates as a separate standalone lab without an internet uplink.
 
-**Learned:** network boundaries, secure remote access, service dependencies and the importance of verifying changes.
+**Topics explored:** network boundaries, secure remote access, service dependencies and the importance of verifying changes.
 
 ### 03. BYTE — my own software project
 BYTE is a music player and server monitoring dashboard I built, with Spotify integration and a minimalist interface on a repurposed Fire HD 6 tablet. It combines a self-hosted backend, API integration, Android/ADB experimentation and interface design. BYTE is an ongoing project, not a third-party application.
 
-**Learned:** application development, deployment, API integration and debugging.
+**Topics explored:** application development, deployment, API integration and debugging.
 
 ### 04. Personal cloud and vulnerability management
 Expanded storage, deployed personal services and began assessing the security of my own infrastructure. The builds below document this stage.
@@ -144,7 +152,7 @@ Added a 2 TB drive and shared it to my Mac and iPhone.
 - Auto-mounted via `/etc/fstab` using the drive's UUID and `nofail`, so the server still boots if the USB drive is unplugged
 - Samba share restricted to one user; enabled Apple compatibility (`vfs_fruit`) to fix read-only access on iOS
 
-**Learned:** why a 2 TB drive shows as 1.8 TiB in Linux (decimal vs binary units), and why SMB needs locking down (it's been the target of major attacks like WannaCry).
+**Topics explored:** why a 2 TB drive shows as 1.8 TiB in Linux (decimal vs binary units), and why SMB needs locking down (it's been the target of major attacks like WannaCry).
 
 ### 2. Immich (photo backup)
 Self-hosted alternative to Google Photos, running in Docker.
@@ -152,7 +160,7 @@ Self-hosted alternative to Google Photos, running in Docker.
 - Machine learning disabled to fit in 8 GB of RAM
 - Default database password replaced with a random one
 
-**Learned:** Docker Compose, splitting storage by speed, and why membership of the `docker` group is effectively root access.
+**Topics explored:** Docker Compose, splitting storage by speed, and why membership of the `docker` group is effectively root access.
 
 ### 3. Greenbone / OpenVAS (vulnerability scanning)
 Ran a full vulnerability scan against my own server.
@@ -162,7 +170,7 @@ Ran a full vulnerability scan against my own server.
 - **Fix:** disabled with `net.ipv4.tcp_timestamps = 0` in `sysctl`
 - **Verified:** confirmed the setting is off; rescan to confirm it clears
 
-**Learned:** how to read a vulnerability report, tell a real finding from an informational one, and the scan → fix → verify loop that vulnerability management runs on.
+**Topics explored:** how to read a vulnerability report, tell a real finding from an informational one, and the scan → fix → verify loop that vulnerability management runs on.
 
 ### 4. Actual Budget
 Self-hosted budgeting app in Docker, locked to localhost and reached over an SSH tunnel.
@@ -190,25 +198,21 @@ Self-hosted budgeting app in Docker, locked to localhost and reached over an SSH
 ### Running containers
 ![Running containers](./containers.png)
 
-## Roadmap
+## Project roadmap
 
-- [x] Ubuntu Server, Tailscale, Docker
-- [x] Pi-hole, Portainer, Uptime Kuma
-- [x] 2 TB storage + Samba
-- [x] Immich
-- [x] Greenbone vulnerability scan + first fix
-- [x] Actual Budget
-- [x] UGREEN Wi-Fi driver troubleshooting
-- [x] BYTE custom dashboard
-- [x] Standalone isolated lab network
-- [ ] Document detailed technical case studies, including failed approaches and verification evidence
-- [ ] Confirm persistent TCP timestamp remediation and follow-up scan
-- [ ] Automated backups (restic, 3-2-1 rule)
-- [ ] Harden SSH: key-only, disable password login, MFA
-- [ ] Wazuh SIEM: collect logs and alert on attacks
-- [ ] Deploy vulnerable targets (Juice Shop, DVWA) and verify isolation
-- [ ] Red + blue project: attack a target, detect it in Wazuh, document it
-- [ ] RAM upgrade to run heavier services
+| Project | Purpose | Status |
+|---|---|---|
+| OPTIPLEXLAB | Core infrastructure | Existing; audit pending |
+| BYTE | Custom dashboard | Existing; redesign planned |
+| BYTE MINI | CYD touchscreen | Planned |
+| ORBIT | Satellite tracking | Planned |
+| TRAP | Cowrie honeypot | Planned |
+| SENTINEL | SOC and detection | Planned |
+| GODSEYE | Authorised intelligence research | Candidate; upstream project to verify |
+| Infrastructure dashboard | Glance and Homelable | Planned |
+| Cloud lab | Proxmox, Kubernetes and GitOps | Planned |
+
+See [the full roadmap](ROADMAP.md). Reliability and backups come before new deployments.
 
 ---
 
@@ -218,7 +222,7 @@ My goal is to develop both offensive and defensive security skills, eventually c
 
 All security testing is limited to systems I own or have explicit permission to assess. Sensitive configuration and credentials must remain outside the public repository.
 
-**Build. Break. Understand. Defend.**
+**Build. Break. Understand. Repeat.**
 
 ## Acknowledgements
 - [awesome-selfhosted](https://awesome-selfhosted.net/)
