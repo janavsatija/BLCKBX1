@@ -30,4 +30,4 @@ One lesson at a time. Explain concepts and commands, predict outcomes, perform a
 ## Knowledge tracker
 Statuses: not started, introduced, practising, understood, independently demonstrated, mastered. No mastery is claimed without evidence. Track exercises and evidence separately from deployment.
 
-First practical: inspect Git history, rename the repository, update the local remote and make an independently understood commit.
+First practical: inspect Git history, understand the completed repository rename, update the local remote and make an independently understood commit.
