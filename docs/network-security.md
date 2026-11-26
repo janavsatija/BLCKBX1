@@ -2,7 +2,7 @@
 
 ## Current design
 
-The OptiPlex hosts self-hosted services. Remote administration uses Tailscale and SSH tunnels. The D-Link DIR-X3000Z was last documented as a standalone network intended for authorised security exercises; current isolation is unverified.
+The OptiPlex hosts self-hosted services. Remote administration uses Tailscale and SSH tunnels. The D-Link DIR-X3000Z is operational and internet-capable, with its uplink connected when required. Its Wi-Fi name is `optiplexlab 5ghz`. Current isolation is unverified.
 
 ## Earlier experiments
 I explored using the OptiPlex as a gateway to the D-Link, including static addressing, forwarding, NAT and firewall chains. This is historical experimentation, not the current topology.
