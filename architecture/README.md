@@ -16,10 +16,10 @@ flowchart LR
   Docker --> Immich[Immich - all interfaces]
   Host --> BYTE[BYTE - LAN binding]
   Host --> Disk[External storage - 1.8 TiB]
-  DLink[D-Link lab - isolation unverified]
+  DLink[D-Link lab - optional internet uplink]
 ```
 
-This is a logical service-access sketch, not a verified physical network map. The D-Link is intentionally shown without an asserted connection.
+This is a logical service-access sketch, not a verified physical network map. The D-Link has working internet connectivity when required, as reported by the lab owner. Its exact uplink path and isolation have not been independently verified; no permanent connection is asserted.
 
 ## Capacity snapshot
 
