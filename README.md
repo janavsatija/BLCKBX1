@@ -4,7 +4,7 @@
 
 > Build. Break. Understand. Repeat.
 
-BLCKBX1 is the public portfolio of OPTIPLEXLAB. OPTIPLEXLAB ACADEMY is my learning programme. The repository was renamed to BLCKBX1.
+BLCKBX1 is the public portfolio of OPTIPLEXLAB. OPTIPLEXLAB ACADEMY is my learning programme. 
 
 ![Ubuntu](https://img.shields.io/badge/Ubuntu_Server-E95420?style=flat-square&logo=ubuntu&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
