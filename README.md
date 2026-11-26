@@ -41,7 +41,7 @@ I started this project during my third year of university after realising how im
 ## TL;DR
 
 - Headless Ubuntu server with self-hosted services and Tailscale remote access. Public exposure and current service bindings are pending a fresh audit.
-- Admin dashboards locked to localhost and reached via **SSH tunnels**; key-based SSH; random database passwords and changed Greenbone default credentials.
+- Selected admin dashboards locked to localhost and reached via **SSH tunnels**; key-based SSH; random database passwords and changed Greenbone default credentials.
 - Ran a **vulnerability scan on my own server** with Greenbone, found a finding, fixed it, and verified the kernel configuration change. A follow-up scan is planned.
 - This repository is a growing record of what I build, what breaks, how I troubleshoot it and what I learn.
 
@@ -108,14 +108,13 @@ flowchart LR
 | ![Actual](https://img.shields.io/badge/Actual_Budget-6B46C1?style=for-the-badge) | Self-hosted budgeting |
 | ![Samba](https://img.shields.io/badge/Samba-SMB_share-555555?style=for-the-badge) | Network file share |
 | ![Greenbone](https://img.shields.io/badge/Greenbone-OpenVAS-66C430?style=for-the-badge) | Vulnerability scanning |
-
 | BYTE | My custom music player and server monitoring dashboard |
 
 ## Previously configured security choices
 
 These describe prior configuration, not a current independent security audit.
 
-- **No ports open to the internet.** Remote access only through Tailscale.
+- **Remote access via Tailscale.** Internet exposure has not been independently verified; Immich listens on all interfaces.
 - **Admin dashboards locked to localhost.** Portainer, Uptime Kuma, Greenbone, Actual and the Pi-hole admin page only listen on the server itself; I reach them through SSH tunnels.
 - **Least-privilege file sharing.** The Samba share allows one named user, no guests.
 - **Credential hardening.** Database passwords are randomly generated; changed Greenbone's default admin login.
@@ -132,7 +131,7 @@ Installed headless Ubuntu Server and configured remote administration from my Ma
 **Topics explored:** Linux hardware compatibility, kernel logs, driver dependencies and systematic troubleshooting.
 
 ### 02. Networking and container infrastructure
-Explored static addressing, subnetting, DHCP, DNS, NAT, Linux forwarding, iptables and UFW while experimenting with the D-Link router. Investigated Tailscale DNS issues and deployed Docker, Pi-hole, Portainer and Uptime Kuma. The D-Link now operates as a separate standalone lab without an internet uplink.
+Explored static addressing, subnetting, DHCP, DNS, NAT, Linux forwarding, iptables and UFW while experimenting with the D-Link router. Investigated Tailscale DNS issues and deployed Docker, Pi-hole, Portainer and Uptime Kuma. The D-Link was last documented as a standalone lab; isolation remains to be verified.
 
 **Topics explored:** network boundaries, secure remote access, service dependencies and the importance of verifying changes.
 
@@ -197,6 +196,29 @@ Self-hosted budgeting app in Docker, locked to localhost and reached over an SSH
 
 ### Running containers
 ![Running containers](./containers.png)
+
+### DNS filtering — Pi-hole
+
+35,122 DNS queries, 2,997 blocked (8.5%) and 302,818 domains on lists at capture time.
+
+![Pi-hole dashboard](assets/pihole-dashboard.png)
+
+### Vulnerability management — Greenbone
+
+195,084 available vulnerability tests; latest task severity 2.6 (Low). This is not a count of vulnerabilities found.
+
+![Greenbone dashboard](assets/greenbone-dashboard.png)
+
+### Monitoring and self-hosting
+
+| Service | Evidence |
+|---|---|
+| Uptime Kuma | [SSH monitor](assets/uptime-kuma.png) |
+| Immich | [Photo service](assets/immich.png) |
+| Actual Budget | [Budget interface](assets/actual-budget.png) |
+| Tailscale | [Connected devices](assets/tailscale.png) |
+
+[View the complete nine-image gallery](assets/README.md).
 
 ## Project roadmap
 
