@@ -4,8 +4,10 @@ BLCKBX1 is the public portfolio; OPTIPLEXLAB ACADEMY is the learning programme. 
 
 ## 1. Foundations
 - [ ] Rename repository BLCKBX1 and update local Git remote
-- [ ] Collect redacted screenshots and hardware photos
-- [ ] Audit CPU, RAM, storage, service bindings and network isolation
+- [x] Collect nine service screenshots and publish gallery
+- [ ] Collect hardware, BYTE and Samba screenshots
+- [x] Record RAM, storage and Docker port bindings snapshot (27 Nov 2026)
+- [ ] Complete CPU, firewall, exposure and network isolation audit
 - [ ] Restic backups, 3-2-1 strategy and restore test
 - [ ] Verify SSH keys, evaluate key-only login and MFA without lockout
 - [ ] Verify persistent TCP timestamp remediation and rescan
