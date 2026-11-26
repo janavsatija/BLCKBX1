@@ -3,7 +3,8 @@
 BLCKBX1 is the public portfolio; OPTIPLEXLAB ACADEMY is the learning programme. One build at a time. All unchecked items are planned, not deployed.
 
 ## 1. Foundations
-- [ ] Rename repository BLCKBX1 and update local Git remote
+- [x] Rename repository to BLCKBX1
+- [ ] Update and verify local Git remote
 - [x] Collect nine service screenshots and publish gallery
 - [ ] Collect hardware, BYTE and Samba screenshots
 - [x] Record RAM, storage and Docker port bindings snapshot (27 Nov 2026)
