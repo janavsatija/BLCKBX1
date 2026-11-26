@@ -12,7 +12,7 @@ sysctl net.ipv4.tcp_timestamps
 ```
 
 ## Verification
-The updated kernel setting was confirmed. A follow-up scanner result and persistence after reboot are not yet documented.
+On 27 November 2026, `sysctl net.ipv4.tcp_timestamps` returned `0`. The Greenbone task view shows two reports and latest severity 2.6 (Low); the filtered aggregate findings view does not establish whether this specific finding cleared. A follow-up scanner result and persistence after reboot are not yet documented.
 
 ## Trade-offs
 TCP timestamps also serve legitimate TCP functions. Disabling them is a context-specific hardening choice, not a universal recommendation.
@@ -22,3 +22,5 @@ Record a sanitised finding, confirm persistence, perform a follow-up scan and do
 
 ## Lesson
 Scan → assess → remediate → verify → document.
+
+[Scan task evidence](../assets/greenbone-tasks.png) · [Findings overview](../assets/greenbone-findings.png)
