@@ -21,9 +21,7 @@ I'm a Bachelor of IT (Cybersecurity) student at Macquarie University, building t
 
 ---
 
-## Portfolio highlights
-
-I am open to cybersecurity internships and entry-level IT opportunities in Sydney. Expected graduation: 2027.
+## Technical highlights
 
 | Case study | Practical evidence |
 |---|---|
@@ -32,7 +30,7 @@ I am open to cybersecurity internships and entry-level IT opportunities in Sydne
 | [Vulnerability management](security/tcp-timestamps.md) | Identified a low-severity finding and verified a configuration change; rescan pending |
 | [BYTE](projects/BYTE/README.md) | Custom dashboard, API integration and repurposed hardware |
 
-Technologies explored: Linux, Docker, Git, SSH, DNS, TCP/IP, Tailscale and Greenbone. This is a learning portfolio, not a claim of professional mastery.
+Technologies explored: Linux, Docker, Git, SSH, DNS, TCP/IP, Tailscale and Greenbone. 
 
 ## Explore the portfolio
 
@@ -251,9 +249,9 @@ See [the full roadmap](ROADMAP.md). Reliability and backups come before new depl
 
 ---
 
-## Career direction
+## Project direction
 
-My goal is to develop both offensive and defensive security skills, eventually combining them in purple-team exercises: simulate an authorised attack, collect telemetry, investigate, mitigate and retest. This repository will grow alongside my degree and document my progress towards a cybersecurity role.
+My goal is to develop both offensive and defensive security skills, eventually combining them in purple-team exercises: simulate an authorised attack, collect telemetry, investigate, mitigate and retest. This repository documents the evolution of the lab, including design decisions, experiments and verified outcomes.
 
 All security testing is limited to systems I own or have explicit permission to assess. Sensitive configuration and credentials must remain outside the public repository.
 
