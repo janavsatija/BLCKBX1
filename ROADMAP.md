@@ -43,16 +43,10 @@ BLCKBX1 is the public portfolio; OPTIPLEXLAB ACADEMY is the learning programme. 
 - [ ] Ansible, Terraform/OpenTofu, Argo CD, GitOps, CI/CD, secret scanning and registry
 - [ ] Disaster recovery and failover exercises
 
-## 6. Career (parallel)
-- [ ] Prioritise internship and entry-level IT applications through January 2027; keep application records private
+## 6. Engineering documentation and tooling
 - [ ] Build a small original Python or Bash security tool with tests and documentation
-- [ ] Publish two evidence-based professional updates per month
-- [ ] Scope a collaborative drone project before publishing details
-- [ ] Publish Hack Mac and homelab posts with evidence
 - [ ] Document troubleshooting case studies
-- [x] Join technical communities
-- [ ] Update CV and LinkedIn
-- [ ] Practise interviews, evaluate certifications and apply for roles
+- [ ] Publish verified technical progress updates
 
 ## Documentation standard
 Learn → design → build → troubleshoot → verify → explain → document → publish. Record evidence, assumptions, rollback and remaining work. Redact private data and secrets. Track knowledge separately from deployment in [ACADEMY.md](ACADEMY.md).
