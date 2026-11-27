@@ -21,6 +21,19 @@ I'm a Bachelor of IT (Cybersecurity) student at Macquarie University, building t
 
 ---
 
+## Portfolio highlights
+
+I am open to cybersecurity internships and entry-level IT opportunities in Sydney. Expected graduation: 2027.
+
+| Case study | Practical evidence |
+|---|---|
+| [Linux driver troubleshooting](docs/ugreen-driver.md) | Restored wireless connectivity through driver and firmware investigation |
+| [Network security](docs/network-security.md) | Remote access, service boundaries and planned isolation verification |
+| [Vulnerability management](security/tcp-timestamps.md) | Identified a low-severity finding and verified a configuration change; rescan pending |
+| [BYTE](projects/BYTE/README.md) | Custom dashboard, API integration and repurposed hardware |
+
+Technologies explored: Linux, Docker, Git, SSH, DNS, TCP/IP, Tailscale and Greenbone. This is a learning portfolio, not a claim of professional mastery.
+
 ## Explore the portfolio
 
 I started this project during my third year of university after realising how important practical experience is. Rather than wishing I had started earlier, I decided to start now.
@@ -104,7 +117,7 @@ flowchart LR
 | ![Pi-hole](https://img.shields.io/badge/Pi--hole-96060C?style=for-the-badge&logo=pi-hole&logoColor=white) | DNS sinkhole and ad blocking |
 | ![Portainer](https://img.shields.io/badge/Portainer-13BEF9?style=for-the-badge&logo=portainer&logoColor=white) | Docker management UI |
 | ![Uptime Kuma](https://img.shields.io/badge/Uptime_Kuma-5CDD8B?style=for-the-badge&logo=uptimekuma&logoColor=white) | Service monitoring |
-| ![Immich](https://img.shields.io/badge/Immich-4250AF?style=for-the-badge&logo=immich&logoColor=white) | Self-hosted photo backup |
+| ![Immich](https://img.shields.io/badge/Immich-4250AF?style=for-the-badge&logo=immich&logoColor=white) | Self-hosted photo management |
 | ![Actual](https://img.shields.io/badge/Actual_Budget-6B46C1?style=for-the-badge) | Self-hosted budgeting |
 | ![Samba](https://img.shields.io/badge/Samba-SMB_share-555555?style=for-the-badge) | Network file share |
 | ![Greenbone](https://img.shields.io/badge/Greenbone-OpenVAS-66C430?style=for-the-badge) | Vulnerability scanning |
@@ -153,8 +166,8 @@ Added a 2 TB drive and shared it to my Mac and iPhone.
 
 **Topics explored:** why a 2 TB drive shows as 1.8 TiB in Linux (decimal vs binary units), and why SMB needs locking down (it's been the target of major attacks like WannaCry).
 
-### 2. Immich (photo backup)
-Self-hosted alternative to Google Photos, running in Docker.
+### 2. Immich (photo management)
+Self-hosted alternative to Google Photos, running in Docker. Independent backup and restore verification remain pending.
 - Database on the fast SSD, photos on the 2 TB drive
 - Machine learning disabled to fit in 8 GB of RAM
 - Default database password replaced with a random one
